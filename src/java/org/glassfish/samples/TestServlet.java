@@ -50,7 +50,7 @@ public class TestServlet extends HttpServlet {
                 count = (Integer) request.getSession().getAttribute("count");
             }
             request.getSession().setAttribute("count", ++count);
-            out.println("Accessed: " + request.getSession().getAttribute("count"));
+            out.println("Accessed again: " + request.getSession().getAttribute("count"));
             
             out.println("</body>");
             out.println("</html>");
