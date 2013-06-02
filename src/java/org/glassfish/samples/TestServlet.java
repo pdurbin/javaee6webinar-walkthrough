@@ -42,6 +42,16 @@ public class TestServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet TestServlet at " + request.getContextPath() + "</h1>");
+
+            int count;
+            if (request.getSession().getAttribute("count") == null) {
+                count = 0;
+            } else {
+                count = (Integer) request.getSession().getAttribute("count");
+            }
+            request.getSession().setAttribute("count", ++count);
+            out.println("Accessed: " + request.getSession().getAttribute("count"));
+            
             out.println("</body>");
             out.println("</html>");
         } finally {            
