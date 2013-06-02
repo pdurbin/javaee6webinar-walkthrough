@@ -6,6 +6,7 @@ package org.glassfish.samples;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import javax.servlet.ServletException;
@@ -24,6 +25,8 @@ public class TestServlet extends HttpServlet {
 
     @PersistenceUnit
     EntityManagerFactory emf;
+
+    @EJB FriendEJB ejb;
     
     /**
      * Processes requests for both HTTP
@@ -58,7 +61,7 @@ public class TestServlet extends HttpServlet {
             request.getSession().setAttribute("count", ++count);
             out.println("Accessed again: " + request.getSession().getAttribute("count"));
             
-            Friend f = (Friend) emf.createEntityManager().createNamedQuery("Friend.findAll").getResultList().get(0);
+            Friend f = (Friend) ejb.getList().get(0);
             out.println("Friend name: " + f.getName());
 
             out.println("</body>");
