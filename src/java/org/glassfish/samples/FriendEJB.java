@@ -6,6 +6,7 @@ package org.glassfish.samples;
 
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.glassfish.samples.model.Friend;
@@ -15,6 +16,7 @@ import org.glassfish.samples.model.Friend;
  * @author pdurbin
  */
 @Stateless
+@Named
 public class FriendEJB {
 
     @PersistenceContext
