@@ -6,6 +6,7 @@ package org.glassfish.samples;
 
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,6 +22,8 @@ public class FriendEJB {
 
     @PersistenceContext
     EntityManager em;
+
+    @Inject Friend friend;
     
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -28,5 +31,9 @@ public class FriendEJB {
     public List getList() {
         return em.createNamedQuery("Friend.findAll").getResultList();
     }
-    
+
+    public void create() {
+        Friend f2 = new Friend(friend.getName(), friend.getAge());
+        em.persist(f2);
+    }
 }

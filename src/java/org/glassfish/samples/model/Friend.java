@@ -5,6 +5,8 @@
 package org.glassfish.samples.model;
 
 import java.io.Serializable;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,6 +22,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author pdurbin
  */
+@Named
+@RequestScoped
 @Entity
 @Table(name = "FRIEND")
 @XmlRootElement
@@ -43,6 +47,11 @@ public class Friend implements Serializable {
 
     public Friend(String name) {
         this.name = name;
+    }
+
+    public Friend(String name, Integer age) {
+        this.name = name;
+        this.age = age;
     }
 
     public String getName() {
